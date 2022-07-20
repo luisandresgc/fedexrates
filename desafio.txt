@@ -1,0 +1,39 @@
+# quote_params = {
+#     address_from: {
+#         zip: "64000",
+#         country: "MX"
+#     },
+#     address_to: {
+#         zip: "64000",
+#         country: "MX"
+#     },
+#     parcel: {
+#         length: 25.0,
+#         width: 28.0,
+#         height: 46.0,
+#         distance_unit: "cm",
+#         weight: 6.5,
+#         mass_unit: "kg"
+#     }
+# }
+
+# rates = Fedex::Rates.get(credentials, quote_params)
+# # example response
+# [
+#     {
+#         "price": 218.05,
+#         "currency": "mxn",
+#         "service_level": {
+#             "name": "Standard Overnight",
+#             "token": "STANDARD_OVERNIGHT"
+#         }
+#     },
+#     {
+#         "price": 139.08,
+#         "currency": "MXN",
+#             "service_level": {
+#                 "name": "Fedex Express Saver",
+#                 "token": "FEDEX_EXPRESS_SAVER"
+#             }
+#     }
+# ]

@@ -1,47 +1,27 @@
 import requests
 import json
 
-url = "https://api.shipengine.com/v1/rates"
+url = "https://api.shipengine.com/v1/rates/estimate"
 
 payload = json.dumps({
-  "rate_options": {
-    "carrier_ids": [
-      "se-2634848"
-    ]
-  },
-  "shipment": {
-    "validate_address": "no_validation",
-    "ship_to": {
-      "name": "Amanda Miller",
-      "phone": "555-555-5555",
-      "address_line1": "525 S Winchester Blvd",
-      "city_locality": "San Jose",
-      "state_province": "CA",
-      "postal_code": "95128",
-      "country_code": "US",
-      "address_residential_indicator": "yes"
+    "carrier_ids": ["se-2634847", "se-2634846", "se-2634848"],
+    "from_country_code": "MX",
+    "from_postal_code": "64000",
+    "to_country_code": "MX",
+    "to_postal_code": "64000 ", 
+    "weight": {
+        "value": 6.5,
+        "unit": "kilogram"
     },
-    "ship_from": {
-      "company_name": "Example Corp.",
-      "name": "John Doe",
-      "phone": "111-111-1111",
-      "address_line1": "4009 Marathon Blvd",
-      "address_line2": "Suite 300",
-      "city_locality": "Austin",
-      "state_province": "TX",
-      "postal_code": "78756",
-      "country_code": "US",
-      "address_residential_indicator": "no"
+    "dimensions": {
+        "unit": "centimeter",
+        "length": 25.0,
+        "width": 28.0,
+        "height": 46.0
     },
-    "packages": [
-      {
-        "weight": {
-          "value": 1,
-          "unit": "ounce"
-        }
-      }
-    ]
-  }
+    "confirmation": "none",
+    "address_residential_indicator": "unknown",
+    "ship_date": "2022-08-08T15:00:00.000Z"
 })
 headers = {
   'Host': 'api.shipengine.com',
@@ -54,21 +34,24 @@ response = requests.request("POST", url, headers=headers, data=payload)
 print(response.text)
 
 
-# quote_params = {
-#     address_from: {
-#         zip: "64000",
-#         country: "MX"
-#     },
-#     address_to: {
-#         zip: "64000",
-#         country: "MX"
-#     },
-#     parcel: {
-#         length: 25.0,
-#         width: 28.0,
-#         height: 46.0,
-#         distance_unit: "cm",
-#         weight: 6.5,
-#         mass_unit: "kg"
-#     }
+#** ORIGINAL
+# {
+#   "carrier_id": "se-2634848",
+#   "from_country_code": "US",
+#   "from_postal_code": "78756",
+#   "to_country_code": "US",
+#   "to_postal_code": "95128", 
+#   "weight": {
+#     "value": 1,
+#     "unit": "pound"
+#   },
+#   "dimensions": {
+#     "unit": "inch",
+#     "length": 0,
+#     "width": 0,
+#     "height": 0
+#   },
+#   "confirmation": "none",
+#   "address_residential_indicator": "unknown",
+#   "ship_date": "2022-08-08T15:00:00.000Z"
 # }
