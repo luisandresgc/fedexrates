@@ -1,4 +1,4 @@
-from fedex_rates.rates import Rate
+from fedexrates.rates import Rate
 
 quote_params = {
     "address_from": {
