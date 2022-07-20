@@ -1,11 +1,19 @@
 from setuptools import setup
+import os
 
 readme = open("./README.md", "r")
 
+lib_folder = os.path.dirname(os.path.realpath(__file__))
+requirement_path = lib_folder + '/requirements.txt'
+install_requires = [] # Here we'll get: ["gunicorn", "docutils>=0.3", "lxml==0.5a7"]
+if os.path.isfile(requirement_path):
+    with open(requirement_path) as f:
+        install_requires = f.read().splitlines()
 
 setup(
     name='fedexrates',
-    packages=['fedexrates'],  # this must be the same as the name above
+    install_requires=install_requires,
+    packages=['fedexrates', ],  # this must be the same as the name above
     version='0.1',
     description='Libreria para conseguir cotizaciones sobre envio de paquetes con la API de shipengine (FedEx)',
     long_description=readme.read(),
