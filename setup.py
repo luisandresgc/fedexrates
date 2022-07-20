@@ -14,7 +14,7 @@ setup(
     name='fedexrates',
     install_requires=install_requires,
     packages=['fedexrates', ],  # this must be the same as the name above
-    version='0.1',
+    version='0.2',
     description='Libreria para conseguir cotizaciones sobre envio de paquetes con la API de shipengine (FedEx)',
     long_description=readme.read(),
     long_description_content_type='text/markdown',
