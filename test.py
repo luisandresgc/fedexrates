@@ -31,8 +31,28 @@ headers = {
 
 response = requests.request("POST", url, headers=headers, data=payload)
 
-print(response.text)
+# print(response.json())
+response_json = response.json()
+new_response = []
+for i in response_json:
+    if(i['error_messages']==[]):
+        price = 0
+        price+=i["shipping_amount"]["amount"]
+        price+=i["insurance_amount"]["amount"]
+        price+=i["confirmation_amount"]["amount"]
+        price+=i["other_amount"]["amount"]
 
+        service_level = {
+            "name":i["service_type"],
+            "token":i["service_code"]
+        }
+        json = {
+            "price":price,
+            "currency":i["shipping_amount"]["currency"].upper(),
+            "service_level":service_level
+        }
+        new_response.append(json)
+print(new_response)
 
 #** ORIGINAL
 # {
