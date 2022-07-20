@@ -3,26 +3,67 @@ import json
 
 url = "https://api.shipengine.com/v1/rates/estimate"
 
-payload = json.dumps({
-    "carrier_ids": ["se-2634847", "se-2634846", "se-2634848"],
-    "from_country_code": "MX",
-    "from_postal_code": "64000",
-    "to_country_code": "MX",
-    "to_postal_code": "64000 ", 
-    "weight": {
-        "value": 6.5,
-        "unit": "kilogram"
+quote_params = {
+    "address_from": {
+        "zip": "64000",
+        "country": "MX"
     },
-    "dimensions": {
-        "unit": "centimeter",
+    "address_to": {
+        "zip": "64000",
+        "country": "MX"
+    },
+    "parcel": {
         "length": 25.0,
         "width": 28.0,
-        "height": 46.0
-    },
+        "height": 46.0,
+        "distance_unit": "cm",
+        "weight": 6.5,
+        "mass_unit": "kg"
+    }
+}
+
+unit = {"kg":"kilogram", "cm":"centimeter"}
+
+weight_unit = quote_params["parcel"]["mass_unit"]
+if(unit[weight_unit]):
+    weight_unit = unit[weight_unit]
+
+dimensions_unit = quote_params["parcel"]["distance_unit"]
+if(unit[dimensions_unit]):
+    dimensions_unit = unit[dimensions_unit]
+
+
+from_postal_code = quote_params["address_from"]["zip"]
+from_country_code = quote_params["address_from"]["country"]
+to_postal_code = quote_params["address_to"]["zip"]
+to_country_code = quote_params["address_to"]["country"]
+weight = {
+    "value": quote_params["parcel"]["weight"],
+    "unit": weight_unit
+}
+dimensions = {
+    "unit": dimensions_unit,
+    "length": quote_params["parcel"]["length"],
+    "width": quote_params["parcel"]["width"],
+    "height": quote_params["parcel"]["height"],
+}
+
+# print(dimensions)
+
+json_request = {
+    "carrier_ids": ["se-2634847", "se-2634846", "se-2634848"],
+    "from_country_code": from_country_code,
+    "from_postal_code": from_postal_code,
+    "to_country_code": to_country_code,
+    "to_postal_code": to_postal_code, 
+    "weight": weight,
+    "dimensions": dimensions,
     "confirmation": "none",
     "address_residential_indicator": "unknown",
     "ship_date": "2022-08-08T15:00:00.000Z"
-})
+}
+
+payload = json.dumps(json_request)
 headers = {
   'Host': 'api.shipengine.com',
   'API-Key': 'TEST_DR6z1zWA0vFKnL+Znjk3FpRlLBEKGpKDg7N/yF7AShY',
@@ -31,7 +72,6 @@ headers = {
 
 response = requests.request("POST", url, headers=headers, data=payload)
 
-# print(response.json())
 response_json = response.json()
 new_response = []
 for i in response_json:
