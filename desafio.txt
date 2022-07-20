@@ -37,3 +37,27 @@
 #             }
 #     }
 # ]
+
+
+
+#** ORIGINAL
+# {
+#   "carrier_id": "se-2634848",
+#   "from_country_code": "US",
+#   "from_postal_code": "78756",
+#   "to_country_code": "US",
+#   "to_postal_code": "95128", 
+#   "weight": {
+#     "value": 1,
+#     "unit": "pound"
+#   },
+#   "dimensions": {
+#     "unit": "inch",
+#     "length": 0,
+#     "width": 0,
+#     "height": 0
+#   },
+#   "confirmation": "none",
+#   "address_residential_indicator": "unknown",
+#   "ship_date": "2022-08-08T15:00:00.000Z"
+# }
