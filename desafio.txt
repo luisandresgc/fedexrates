@@ -1,3 +1,7 @@
+Objetivo: Crear un Gem en ruby que permite conectarse al webservice de FedEx para
+obtener las tarifas de envíos.
+Modo de uso de la Gem después de instalar en un proyecto de Rails
+
 # quote_params = {
 #     address_from: {
 #         zip: "64000",
