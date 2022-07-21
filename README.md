@@ -27,5 +27,5 @@ rate = Rate(quote_params=quote_params, credentials=credentials)
 print(rate.get_rate())
 ```
 
-### Links
+### Link de la libreria para descargar
     https://pypi.org/project/fedexrates/
