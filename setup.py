@@ -10,9 +10,20 @@ if os.path.isfile(requirement_path):
     with open(requirement_path) as f:
         install_requires = f.read().splitlines()
 
+try:
+    # for pip >= 10
+    from pip._internal.req import parse_requirements
+except ImportError:
+    # for pip <= 9.0.3
+    from pip.req import parse_requirements
+
+def load_requirements(fname):
+    reqs = parse_requirements(fname, session="test")
+    return [str(ir.req) for ir in reqs]
+
 setup(
     name='fedexrates',
-    install_requires=install_requires,
+    install_requires=load_requirements("requirements.txt"),
     packages=['fedexrates', ],  # this must be the same as the name above
     version='0.3',
     description='Libreria para conseguir cotizaciones sobre envio de paquetes con la API de shipengine (FedEx)',
