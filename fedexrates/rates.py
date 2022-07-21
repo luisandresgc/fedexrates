@@ -1,6 +1,10 @@
 import requests
 import json
 
+import datetime
+
+CURRENT_TIME = datetime.datetime.now().isoformat()
+
 class Rate:
     def __init__(self, quote_params=dict, credentials=str):
         self.quote_params = quote_params
@@ -12,10 +16,10 @@ class Rate:
     def get_json_request(self):
         unit = {"kg":"kilogram", "cm":"centimeter"}
         weight_unit =  self.quote_params["parcel"]["mass_unit"]
-        if(unit[weight_unit]):
+        if(weight_unit in unit):
             weight_unit = unit[weight_unit]
         dimensions_unit =  self.quote_params["parcel"]["distance_unit"]
-        if(unit[dimensions_unit]):
+        if(dimensions_unit in unit):
             dimensions_unit = unit[dimensions_unit]
 
         from_postal_code =  self.quote_params["address_from"]["zip"]
@@ -43,7 +47,7 @@ class Rate:
             "dimensions": dimensions,
             "confirmation": "none",
             "address_residential_indicator": "unknown",
-            "ship_date": "2022-08-08T15:00:00.000Z"
+            "ship_date": CURRENT_TIME
         }
         return json_request
 
