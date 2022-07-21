@@ -5,5 +5,4 @@ fedexrates/rates.py
 fedexrates.egg-info/PKG-INFO
 fedexrates.egg-info/SOURCES.txt
 fedexrates.egg-info/dependency_links.txt
-fedexrates.egg-info/requires.txt
 fedexrates.egg-info/top_level.txt

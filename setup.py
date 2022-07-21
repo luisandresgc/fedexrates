@@ -11,11 +11,6 @@ def check_dependencies():
         install_requires.append('certifi')
 
     try:
-        import charset-normalizer
-    except ImportError:
-        install_requires.append('charset-normalizer')
-
-    try:
         import idna
     except ImportError:
         install_requires.append('idna')
