@@ -13,8 +13,8 @@ if os.path.isfile(requirement_path):
 setup(
     name='fedexrates',
     install_requires=install_requires,
-    packages=['fedexrates', ],  # this must be the same as the name above
-    version='0.6',
+    packages=['fedexrates'],  # this must be the same as the name above
+    version='0.7',
     description='Libreria para conseguir cotizaciones sobre envio de paquetes con la API de shipengine (FedEx)',
     long_description=readme.read(),
     long_description_content_type='text/markdown',
@@ -22,7 +22,7 @@ setup(
     author_email='desarrollo02@cebsa.mx',
     # use the URL to the github repo
     url='https://github.com/luisandresgc/fedexrates',
-    download_url='https://github.com/luisandresgc/fedexrates/tarball/0.6',
+    download_url='https://github.com/luisandresgc/fedexrates/tarball/0.7',
     keywords=['testing', 'logging', 'example'],
     classifiers=[ ],
     license='MIT',
